@@ -15,12 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework.routers import DefaultRouter
+from book.views import Index as book_View
+from movie.views import Index as movie_View
+from series.views import Index as series_View
+
+
+router = DefaultRouter()
+router.register(r'book', book_View)
+router.register(r'movie', movie_View)
+router.register(r'series', series_View)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("book.urls"),name="index"),
-    path('movie/', include("movie.urls"),name="movie"),
-    path('series/', include("series.urls"),name="series"),
+    path('',include(router.urls)),
 ]
 
 from kitap_film_dizi_api import settings

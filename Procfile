@@ -1,1 +1,0 @@
-web: gunicorn kitap_film_dizi_api.wsgi --log-file -
